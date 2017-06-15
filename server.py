@@ -18,4 +18,4 @@ def base():
   return {'result':'ok', 'images':['http://1.jpg', 'http://2.jpg']}
 
 if (__name__ == '__main__'):
-    app.run(debug=True,port=8763)
+    app.run(debug = True, host = '0.0.0.0', port = 8080)
