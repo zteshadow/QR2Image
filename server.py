@@ -6,10 +6,6 @@ import hashlib
 
 app = Flask(__name__)
 
-@app.route("/")
-def index():
-    return render_template('index.html')
-
 @app.route('/', methods=['GET','POST'])
 def wechat():
   data = request.args
@@ -25,7 +21,7 @@ def wechat():
       s = [timestamp,nonce,token]
       s.sort()
       s = ''.join(s)
-      if(hashlib.sha1(s).hexdigest() == signature):
+      if(hashlib.sha1(s.encode('utf-8')).hexdigest() == signature):
         return make_response(echostr)
       else:
         return 'error'
