@@ -1,13 +1,34 @@
 #!/user/bin/env python3
 #-*- coding:utf8 -*-
 
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
+import hashlib
 
 app = Flask(__name__)
 
 @app.route("/")
 def index():
     return render_template('index.html')
+
+@app.route('/', methods=['GET','POST'])
+def wechat():
+  data = request.args
+  if len(data) == 0:
+    return render_template('index.html')
+  else:
+    if request.method=='GET':
+      token = 'qr2image'
+      signature = data.get('signature','')
+      timestamp = data.get('timestamp','')
+      nonce = data.get('nonce','')
+      echostr = data.get('echostr','')
+      s = [timestamp,nonce,token]
+      s.sort()
+      s = ''.join(s)
+      if(hashlib.sha1(s).hexdigest() == signature):
+        return make_response(echostr)
+      else:
+        return 'error'
 
 @app.route("/pic")
 def base():
