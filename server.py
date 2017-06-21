@@ -26,6 +26,14 @@ def wechat():
       else:
         return 'error'
 
+@app.route("/.well-known/acme-challenge/<fname>")
+def ssl_auth(fname):
+  path = "./static/" + fname
+  print(path)
+  with open(path, "r") as f:
+    data = f.read()
+    return make_response(data)
+ 
 @app.route("/pic")
 def base():
   qr = request.values.get('qr')
@@ -35,4 +43,6 @@ def base():
   return {'result':'ok', 'images':['http://1.jpg', 'http://2.jpg']}
 
 if (__name__ == '__main__'):
-    app.run(debug = True, host = '0.0.0.0', port = 8080)
+    app.run(debug = True, host = '0.0.0.0', port = 8080, ssl_context = ('./ssl/signed.crt', './ssl/domain.key'))
+  #app.run(debug = True, host = '0.0.0.0', port = 8080)
+
