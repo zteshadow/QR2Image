@@ -9,11 +9,13 @@
 sudo /sbin/iptables -A PREROUTING -t nat -p tcp --dport 80 -j REDIRECT --to-port 8080
 
 再把443端口也重定向到8080端口:
+
 sudo /sbin/iptables -A PREROUTING -t nat -p tcp --dport 443 -j REDIRECT --to-port 8080
 
 **2.'connection refused'**
 
 app.run添加host='0.0.0.0'参数
+
 
 
 ##2. Flask搭建HTTPS服务器
@@ -32,6 +34,7 @@ sudo apt-get install python3-dev
 
 参考: http://www.jianshu.com/p/109cc43b564a
 
+
 ##3.服务器证书无效
 
 
@@ -39,7 +42,7 @@ sudo apt-get install python3-dev
 
 开始的时候使用pyOpenSSL自带的安全证书: ssl_context='adhoc'会有"服务器证书无效"的提示, 于是决定自己配置证书
 
-参考:参考: http://www.jianshu.com/p/109cc43b564a
+参考: http://www.jianshu.com/p/109cc43b564a
 
 **2. 自己配置证书**
 
