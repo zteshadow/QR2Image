@@ -1,7 +1,7 @@
 # QR2Image
 扫描二维码获取图片, 微信小程序的客户端和服务端
 
-## 1. HTTP服务器On GCP(google cloud platform)
+## 1. HTTP服务器On GCP(google cloud platform)##
 
 **1.在Debian服务器上面Flask绑定80端口, 提示"permission denied"**
 解决: 不能绑定80端口, 可以使用8080端口, 然后再配置redirect
@@ -18,7 +18,7 @@ app.run添加host='0.0.0.0'参数
 
 
 
-##2. Flask搭建HTTPS服务器
+## 2. Flask搭建HTTPS服务器
 
 **1.安装pyOpenSSL失败**
 
@@ -36,7 +36,7 @@ sudo apt-get install python3-dev
 
 
 
-##3.服务器证书无效
+## 3.服务器证书无效##
 
 
 **1. 用自带证书**
